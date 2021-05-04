@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export class Reducer {
+export class ReducerFactory {
   constructor(state, action) {
     this.state = state
     this.action = action
@@ -9,14 +9,6 @@ export class Reducer {
   factory() {
     const reducer = this._getReducer()
     return new reducer(this.state, this.action)
-  }
-
-  reduce() {
-    return this._reducedState()
-  }
-
-  _reducedState() {
-    return this.state
   }
 
   _getReducer() {
@@ -33,6 +25,21 @@ export class Reducer {
 
   _klassPrefix() {
     return _.upperFirst(_.camelCase(this.action.type))
+  }
+}
+
+class Reducer {
+  constructor(state, action) {
+    this.state = state
+    this.action = action
+  }
+
+  reduce() {
+    return this._reducedState()
+  }
+
+  _reducedState() {
+    return this.state
   }
 }
 

@@ -1,7 +1,7 @@
 import * as actions from './actionTypes'
-import { Reducer } from './reducerFactory'
+import { ReducerFactory } from './reducerFactory'
 
 export default function reducer(state = [], action) {
-  const reducer = new Reducer(state, action).factory()
+  const reducer = new ReducerFactory(state, action).factory()
   return reducer.reduce()
 }
