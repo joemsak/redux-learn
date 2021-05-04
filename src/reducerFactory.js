@@ -6,25 +6,17 @@ export class Reducer {
     this.action = action
   }
 
-  reduce() {
-    return this._reducedState()
-  }
-
   factory() {
     const reducer = this._getReducer()
     return new reducer(this.state, this.action)
   }
 
+  reduce() {
+    return this._reducedState()
+  }
+
   _reducedState() {
     return this.state
-  }
-
-  _klassName() {
-    return `${this._klassPrefix()}Reducer`
-  }
-
-  _klassPrefix() {
-    return _.upperFirst(_.camelCase(this.action.type))
   }
 
   _getReducer() {
@@ -33,6 +25,14 @@ export class Reducer {
       BugRemovedReducer,
       BugResolvedReducer,
     }[this._klassName()] || Reducer
+  }
+
+  _klassName() {
+    return `${this._klassPrefix()}Reducer`
+  }
+
+  _klassPrefix() {
+    return _.upperFirst(_.camelCase(this.action.type))
   }
 }
 
